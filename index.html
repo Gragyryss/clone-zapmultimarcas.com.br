@@ -191,6 +191,56 @@
         </div>
     </section>
 
+    <!-- Botão flutuante do zaper -->
+     <a href="https://wa.me/5549988472059" targer="_blank"
+       class="whatsapp-float"
+       aria-label="Falar no WhatsApp">
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+       alt="WhatsApp"
+       class="whatsapp-icon">
+    </a>
+
+    <style>
+        .whatsapp-float{
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #25D366;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            animation: pulse-glow 2s infinite;
+            transition: transform 0.2 ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .whatsapp-icon{
+            width: 34px;
+            height: 34px;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-float:hover{
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-glow{
+            0%, 100%{
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+            70%{
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+        }
+    </style>
+
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gradient-to-b from-zap-gray to-zap-dark">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
