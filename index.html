@@ -124,40 +124,6 @@
         </div>
     </section>
 
-    <!-- Inventory Section -->
-    <section id="inventory" class="py-20 bg-gradient-to-b from-zap-dark to-zap-gray">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Nosso Estoque</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                    Explore nossa seleção cuidadosamente escolhida de veículos premium
-                </p>
-            </div>
-
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="filterCars('all')" class="filter-btn active bg-zap-green text-black px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                    Todos
-                </button>
-                <button onclick="filterCars('economico')" class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-zap-green hover:text-black transition-all duration-300">
-                    Econômicos
-                </button>
-                <button onclick="filterCars('intermediario')" class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-zap-green hover:text-black transition-all duration-300">
-                    Intermediários
-                </button>
-                <button onclick="filterCars('premium')" class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-zap-green hover:text-black transition-all duration-300">
-                    Premium
-                </button>
-            </div>
-
-            <!-- Car Grid -->
-            <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Car cards will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-
     <!-- ======================= -->
     <!-- GALERIA DE FOTOS POR VEÍCULO -->
     <!-- ======================= -->
@@ -206,7 +172,7 @@
     </div>
 
      <!-- ======================= -->
-    <!-- VEÍCULO 1 - VW JETTA -->
+    <!-- VEÍCULO 2 - VW JETTA -->
     <!-- ======================= -->
     <div class="mb-12">
         <h3 class="text-2xl font-semibold text-zap-green mb-4">Volkswagen Jetta 2018</h3>
@@ -246,8 +212,49 @@
         </div>
     </div>
 
+      <!-- ======================= -->
+    <!-- VEÍCULO 3 - VW NIVUS -->
     <!-- ======================= -->
-    <!-- VEÍCULO 2 - VW GOL -->
+    <div class="mb-12">
+        <h3 class="text-2xl font-semibold text-zap-green mb-4">Volkswagen Nivus 2024</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <!-- Foto 1 -->
+            <div class="overflow-hidden rounded-xl border border-gray-700">
+                <img src="https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763484999/nivus1_kknuo3.jpg"
+                     class="w-full h-64 object-cover hover:scale-105 transition">
+            </div>
+
+            <!-- Foto 2  -->
+            <div class="overflow-hidden rounded-xl border border-gray-700">
+                <img src="https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763485404/nivus2_sdma1z.jpg"
+                     class="w-full h-64 object-cover hover:scale-105 transition">
+            </div>
+
+            <!-- Foto 3  -->
+            <div class="overflow-hidden rounded-xl border border-gray-700">
+                <img src="https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763485405/nivus3_whcvqz.jpg"
+                     class="w-full h-64 object-cover hover:scale-105 transition">
+            </div>
+
+            <!-- Foto 4  -->
+            <div class="overflow-hidden rounded-xl border border-gray-700">
+                <img src="https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763485403/nivus4_lmp59b.jpg"
+                     class="w-full h-64 object-cover hover:scale-105 transition">
+            </div>
+
+            <!-- Foto 5  -->
+            <div class="overflow-hidden rounded-xl border border-gray-700">
+                <img src="https://res.cloudinary.com/dwrmw2cgc/image/upload/v1762192588/_DSC0350_ouwakq.jpg"
+                     class="w-full h-64 object-cover hover:scale-105 transition">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======================= -->
+    <!-- VEÍCULO 4 - VW GOL -->
     <!-- ======================= -->
      <div class="mb-12">
         <h3 class="text-2xl font-semibold text-zap-green mb-4">Volkswagen Gol 1998</h3>
@@ -621,8 +628,6 @@
                 brand: "Ford",
                 model: "Ecosport",
                 year: 2019,
-                category: "premium",
-                weight: "1.660 Kg",
                 fuel: "Flex",
                 transmission: "Manual",
                 color: "Branco",
@@ -636,8 +641,6 @@
                 brand: "Volkswagen",
                 model: "Jetta",
                 year: 2021,
-                category: "Premium",
-                weight: "1.800 Kg",
                 fuel: "Flex",
                 transmission: "Automática",
                 color: "Branco",
@@ -647,12 +650,10 @@
             },
             {
                 id: 3,
-                name: "Nivus Highline",
+                name: "Volkswagen Nivus Highline",
                 brand: "Volkswagen",
                 model: "Nivus Highline",
                 year: 2024,
-                category: "intermediario",
-                weight: "1.650 Kg",
                 fuel: "Flex",
                 transmission: "Automatico",
                 color: "Cinza",
@@ -662,12 +663,23 @@
             },
             {
                 id: 4,
+                name: "Volkswagen Polo Highline",
+                brand: "Volkswagen",
+                model: "Polo",
+                year: 2019,
+                fuel: "Flex",
+                transmission: "Automatico",
+                color: "Prata",
+                mileage: "130.718 km",
+                sold: false,
+                image: "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763484999/nivus1_kknuo3.jpg"
+            },
+            {
+                id: 5,
                 name: "T-Cross",
                 brand: "Volks",
                 model: "T-Cross",
                 year: 2025,
-                category: "Econômico",
-                weight: "1.350 Kg",
                 fuel: "Flex",
                 transmission: "Automática",
                 color: "Branco",
@@ -676,13 +688,11 @@
                 image: "https://res.cloudinary.com/duk5infgc/image/upload/w_800,q_auto,f_auto/v1751032734/IMG_0392_oxgixg.jpg"
             },
             {
-                id: 7,
+                id: 6,
                 name: "Hyundai Elantra",
                 brand: "Hyundai",
                 model: "Elantra",
                 year: 2015,
-                category: "Econômico",
-                weight: "1.920 Kg",
                 fuel: "Flex",
                 transmission: "Automático",
                 color: "Prata",
@@ -691,13 +701,11 @@
                 Image: "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1762800832/_DSC0635_fp73xf.jpg"
             },
             {
-                id: 8,
+                id: 7,
                 name: "Volkswagen Gol",
                 brand: "Volkswagen",
                 model: "Gol",
                 year: 1998,
-                category: "Econômico",
-                weight: "1.920 Kg",
                 fuel: "Flex",
                 transmission: "Manual",
                 color: "Preto",
@@ -706,13 +714,11 @@
                 Image: "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1763410995/gol_1_mll993.jpg"
             },
             {
-                id: 9,
+                id: 8,
                 name: "Volkswagen Saveiro Summer",
                 brand: "Volkswagen",
                 model: "Saveiro Summer",
                 year: 2001,
-                category: "premium",
-                weight: "1.660 Kg",
                 fuel: "Flex",
                 transmission: "Manual",
                 color: "Prata",
