@@ -379,16 +379,17 @@
     </section>
 
     <!-- Car Detail Modal -->
-   <div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
+  <div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4">
+  <div class="w-full max-w-4xl mx-auto">
+    <h2 id="modal-title" class="text-xl font-bold text-white mb-4"></h2>
+
+    <!-- Aqui vai o carrossel -->
+    <div id="modal-image" class="relative w-full max-w-3xl h-[420px] sm:h-[520px] mx-auto overflow-hidden rounded-xl"></div>
+
+    <!-- detalhes abaixo do carrossel -->
+    <div id="modal-details" class="mt-4 text-gray-300 text-sm"></div>
+  </div>
+</div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                        <div id="modal-image" class="relative w-full max-w-3xl h-[420px] sm:h-[500px] mx-auto overflow-hidden rounded-xl">
@@ -648,14 +649,21 @@
         const modalImage = document.getElementById('modal-image');
         const imgSrc = currentCar.image || currentCar.Image || '';
         modalImage.innerHTML = `
-            <img src="${imgSrc}" alt="${escapeHtml(currentCar.name)}" class="w-full h-full object-cover rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="hidden w-full h-full items-center justify-center text-gray-400">
-                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-                    <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1V8a1 1 0 00-1-1h-3z"></path>
-                </svg>
+    <div class="w-full max-w-[800px] h-[400px] mx-auto px-4 flex items-center justify-center">
+        <div class="swiper mySwiper w-full h-full">
+            <div class="swiper-wrapper">
+                ${currentCar.images.map(img => `
+                    <div class="swiper-slide flex items-center justify-center bg-black rounded-lg">
+                        <img src="${img}" class="w-full h-full object-contain mx-auto" />
+                    </div>
+                `).join('')}
             </div>
-        `;
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+`;
 
        const modalDetails = document.getElementById("modal-details");
 
@@ -673,10 +681,15 @@ modalDetails.innerHTML = `
     }
 
     function closeModal() {
-        document.getElementById('car-modal').classList.add('hidden');
-        document.getElementById('car-modal').classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    }
+  const container = document.getElementById('modal-image');
+  if (container && container._carouselCleanup) {
+    try { container._carouselCleanup(); } catch(e) {}
+    delete container._carouselCleanup;
+  }
+  document.getElementById('car-modal').classList.add('hidden');
+  document.getElementById('car-modal').classList.remove('flex');
+  document.body.style.overflow = 'auto';
+}
 
     function showPrice() {
         if (!currentCar) return;
@@ -893,6 +906,84 @@ function prevImage() {
     const images = currentCar.images || [currentCar.image || currentCar.Image];
     carouselIndex = (carouselIndex - 1 + images.length) % images.length;
     document.getElementById("carousel-photo").src = images[carouselIndex];
+}
+
+function renderCarousel(images) {
+  // garante array válido
+  images = Array.isArray(images) && images.length ? images : [images || ''];
+
+  const container = document.getElementById('modal-image');
+  if (!container) {
+    console.error('renderCarousel: #modal-image não encontrado');
+    return;
+  }
+
+  // HTML padronizado: largura máxima, altura fixa, e centralização com flex
+  container.innerHTML = `
+    <div class="w-full max-w-[900px] h-full mx-auto flex items-center justify-center relative px-4">
+      <!-- slide wrapper -->
+      <div id="carousel-wrapper" class="w-full h-full flex items-center justify-center overflow-hidden rounded-lg bg-transparent">
+        ${images.map((img, i) => `
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-0'} flex items-center justify-center">
+            <img src="${img}" alt="Foto ${i+1}" class="max-w-full max-h-full object-contain mx-auto">
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Botões -->
+      <button id="carousel-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full shadow-lg hover:bg-black/70 z-20">◀</button>
+      <button id="carousel-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full shadow-lg hover:bg-black/70 z-20">▶</button>
+
+      <!-- indicadores (opcional) -->
+      <div id="carousel-indicators" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        ${images.map((_, i) => `<button class="w-2 h-2 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'}" data-index="${i}"></button>`).join('')}
+      </div>
+    </div>
+  `;
+
+  // Estado / handlers
+  const slides = container.querySelectorAll('.carousel-slide');
+  const btnPrev = container.querySelector('#carousel-prev');
+  const btnNext = container.querySelector('#carousel-next');
+  const indicators = container.querySelectorAll('#carousel-indicators button');
+
+  let idx = 0;
+  function showIndex(newIdx) {
+    if (!slides || slides.length === 0) return;
+    slides.forEach((s, i) => s.style.opacity = (i === newIdx ? '1' : '0'));
+    indicators.forEach((b, i) => b.classList.toggle('bg-white', i === newIdx));
+    indicators.forEach((b, i) => b.classList.toggle('bg-white/50', i !== newIdx));
+    idx = newIdx;
+  }
+
+  btnNext?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showIndex((idx + 1) % slides.length);
+  });
+
+  btnPrev?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showIndex((idx - 1 + slides.length) % slides.length);
+  });
+
+  indicators.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const i = Number(btn.dataset.index || 0);
+      showIndex(i);
+    });
+  });
+
+  // keyboard arrows quando modal aberto (opcional)
+  function onKey(e) {
+    if (e.key === 'ArrowRight') showIndex((idx + 1) % slides.length);
+    if (e.key === 'ArrowLeft') showIndex((idx - 1 + slides.length) % slides.length);
+    if (e.key === 'Escape') closeModal && closeModal();
+  }
+  document.addEventListener('keydown', onKey);
+
+  // cleanup: quando fechar modal, remover listener
+  // (mantemos uma referência no elemento para poder limpar depois)
+  container._carouselCleanup = () => document.removeEventListener('keydown', onKey);
 }
 
 
