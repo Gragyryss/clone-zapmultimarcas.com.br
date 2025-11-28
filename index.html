@@ -269,27 +269,32 @@
 
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-b from-zap-gray to-zap-dark">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Entre em Contato</h2>
-            <p class="text-xl text-gray-400 mb-12">
-                Estamos prontos para ajudar você a encontrar o carro perfeito
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <!--TODA A DIV DO INSTAGRAM PASSA A SER UM BOTÃO CLICÁVEL, REDIRECIONANDO PARA A PÁGINA DO INSTAGRAM-->
-                <div class="bg-gray-800/50 p-6 rounded-xl">
-                    <button><a href="https://www.instagram.com/zapmultimarcas.zm/" target="_blank">
-    <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition cursor-pointer">
-        <div class="w-12 h-12 bg-zap-green rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-            </svg>
-        </div>
-        <h3 class="text-lg font-semibold mb-2">Instagram</h3>
-        <p class="text-gray-400">Confira a nossa página</p>
-    </div>
-</a></button>
-                <div class="bg-gray-800/50 p-6 rounded-xl">
+<section id="contact" class="py-20 bg-gradient-to-b from-zap-gray to-zap-dark">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Entre em Contato</h2>
+        <p class="text-xl text-gray-400 mb-12">
+            Estamos prontos para ajudar você a encontrar o carro perfeito
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 auto-rows-fr">
+
+            <!-- Instagram - card inteiro clicável -->
+            <a href="https://www.instagram.com/zapmultimarcas.zm/" target="_blank" class="block h-full">
+                <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition cursor-pointer h-full flex flex-col justify-start">
+                    <div class="w-12 h-12 bg-zap-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Instagram</h3>
+                    <p class="text-gray-400">Confira a nossa página</p>
+                </div>
+            </a>
+
+            <!-- WhatsApp - card inteiro clicável -->
+            <a href="https://wa.me/5549998033223" target="_blank" class="block h-full">
+                <div class="bg-gray-800/50 p-6 rounded-xl hover:bg-gray-800/70 transition cursor-pointer h-full flex flex-col justify-start">
                     <div class="w-12 h-12 bg-zap-green rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
@@ -298,18 +303,28 @@
                     <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
                     <p class="text-gray-400">Fale conosco agora</p>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-zap-green rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Horários</h3>
-                    <p class="text-gray-400">Seg - Sex: 8h às 18h <br>
-                    Sábado: 8:30h às 12h</p>
+            </a>
+
+            <!-- Horários -->
+            <div class="bg-gray-800/50 p-6 rounded-xl h-full flex flex-col justify-start">
+                <div class="w-12 h-12 bg-zap-green rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
                 </div>
+                <h3 class="text-lg font-semibold mb-2">Horários</h3>
+                <p class="text-gray-400">
+                    Seg - Sex: 8h às 18h <br>
+                    Sábado: 8:30h às 12h
+                </p>
             </div>
+
+        </div>
+    </div>
+</section>
+
+
 
             <!--STYLE PARA A LOCALIZAÇÃO NO GOOGLE MAPS-->
              <style>
@@ -378,22 +393,32 @@
 </footer>
     </section>
 
-    <!-- Car Detail Modal -->
-<div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4 relative">
-  
-    <div class="bg-gray-900/90 p-6 rounded-2xl max-w-4xl w-full">
-        
-        <h2 id="modal-title" class="text-xl font-bold text-white mb-4"></h2>
+   <!-- Modal -->
+<div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-6 z-[9999]">
+    <div class="bg-gray-900/90 p-6 rounded-2xl max-w-4xl w-full shadow-xl relative">
+
+        <!-- Botão fechar -->
+        <button onclick="closeCarModal()"
+            class="absolute top-3 right-3 text-white text-2xl bg-black/40 px-3 rounded-full hover:bg-black/60">
+            ✕
+        </button>
+
+        <!-- Título -->
+        <h2 id="modal-title" class="text-2xl font-semibold text-white mb-4 text-center"></h2>
 
         <!-- Carrossel -->
         <div id="modal-image"
-             class="relative w-full h-[420px] sm:h-[520px] mx-auto overflow-hidden rounded-xl flex items-center justify-center">
+            class="relative w-full h-[340px] sm:h-[420px] overflow-hidden rounded-xl flex items-center justify-center bg-black/40">
         </div>
 
-        <!-- Detalhes -->
-        <div id="modal-details" class="mt-4 text-gray-300 text-sm"></div>
+        <!-- Dados do carro -->
+        <div id="modal-details" class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-300">
+            <!-- Conteúdo é preenchido via JS -->
+        </div>
+
     </div>
 </div>
+
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
@@ -955,26 +980,41 @@ function renderCarousel(images) {
 
 
 function nextImage() {
-    const images = currentCar.images || [currentCar.image || currentCar.Image];
-    carouselIndex = (carouselIndex + 1) % images.length;
-    document.getElementById("carousel-photo").src = images[carouselIndex];
+    carouselIndex =
+        carouselIndex === currentImages.length - 1 ? 0 : carouselIndex + 1;
+
+    document.getElementById("carousel-photo").src = currentImages[carouselIndex];
 }
 
+
 function prevImage() {
-    const images = currentCar.images || [currentCar.image || currentCar.Image];
-    carouselIndex = (carouselIndex - 1 + images.length) % images.length;
-    document.getElementById("carousel-photo").src = images[carouselIndex];
+    carouselIndex =
+        carouselIndex === 0 ? currentImages.length - 1 : carouselIndex - 1;
+
+    document.getElementById("carousel-photo").src = currentImages[carouselIndex];
 }
 
 function renderCarousel(images) {
-  // garante array válido
-  images = Array.isArray(images) && images.length ? images : [images || ''];
+    const container = document.getElementById("modal-image");
 
-  const container = document.getElementById('modal-image');
-  if (!container) {
-    console.error('renderCarousel: #modal-image não encontrado');
-    return;
-  }
+    container.innerHTML = `
+        <img id="carousel-photo" 
+             src="${images[carouselIndex]}" 
+             class="w-full h-full object-cover rounded-xl">
+
+        <button onclick="prevImage()"
+                class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+            ◀
+        </button>
+
+        <button onclick="nextImage()"
+                class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+            ▶
+        </button>
+    `;
+
+    currentImages = images;
+}
 
   // HTML padronizado: largura máxima, altura fixa, e centralização com flex
   container.innerHTML = `
@@ -1042,14 +1082,13 @@ function renderCarousel(images) {
   // cleanup: quando fechar modal, remover listener
   // (mantemos uma referência no elemento para poder limpar depois)
   container._carouselCleanup = () => document.removeEventListener('keydown', onKey);
-}
 
 function openCarModal(carId) {
     const car = cars.find(c => c.id === carId);
     if (!car) return;
 
     // título
-    document.getElementById("modal-title").textContent = car.name;
+    document.getElementById("modal-title").textContent = car.name;  
 
     // renderiza imagens do carrossel
     renderCarousel(car.images || [car.image]);
@@ -1091,6 +1130,21 @@ function closeModal() {
 
     // destrava o fundo
     document.body.style.overflow = "auto";
+}
+
+function renderCarDetails(car) {
+    document.getElementById("modal-details").innerHTML = `
+        <div><strong>Ano:</strong> ${car.year}</div>
+        <div><strong>Quilometragem:</strong> ${car.mileage}</div>
+        <div><strong>Combustível:</strong> ${car.fuel}</div>
+        <div><strong>Câmbio:</strong> ${car.transmission}</div>
+        <div><strong>Cor:</strong> ${car.color}</div>
+        <div><strong>Marca:</strong> ${car.brand}</div>
+    `;
+}
+
+function closeCarModal() {
+    document.getElementById("car-modal").classList.add("hidden");
 }
 
 
