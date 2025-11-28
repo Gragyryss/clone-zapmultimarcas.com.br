@@ -396,7 +396,7 @@
                         </div>
                     </div>
                     <div>
-                        <div id="modal-details" class="space-y-4">
+                       <div id="modal-details" class="mt-4 text-gray-300 text-sm"></div>
                             <!-- Car details will be inserted here -->
                         </div>
                         <div class="mt-8 space-y-4">
@@ -657,43 +657,15 @@
             </div>
         `;
 
-        const modalDetails = document.getElementById('modal-details');
-        modalDetails.innerHTML = `
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <span class="text-gray-400">Marca:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.brand || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Modelo:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.model || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Ano:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.year || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Peso:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.weight || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Combustível:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.fuel || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Transmissão:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.transmission || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Cor:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.color || '')}</span>
-                </div>
-                <div>
-                    <span class="text-gray-400">Quilometragem:</span>
-                    <span class="font-semibold ml-2">${escapeHtml(currentCar.mileage || '')}</span>
-                </div>
-            </div>
-        `;
+       const modalDetails = document.getElementById("modal-details");
+
+modalDetails.innerHTML = `
+    <p><strong>Ano:</strong> ${currentCar.year}</p>
+    <p><strong>Quilometragem:</strong> ${currentCar.mileage}</p>
+    <p><strong>Cor:</strong> ${currentCar.color}</p>
+    <p><strong>Combustível:</strong> ${currentCar.fuel}</p>
+    <p><strong>Câmbio:</strong> ${currentCar.transmission}</p>
+`;
 
         document.getElementById('car-modal').classList.remove('hidden');
         document.getElementById('car-modal').classList.add('flex');
