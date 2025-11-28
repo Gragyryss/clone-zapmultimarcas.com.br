@@ -734,7 +734,7 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                        <div id="modal-image" class="w-full h-64 bg-gray-800 rounded-xl mb-4 flex items-center justify-center">
+                        <div id="modal-image" class="relative w-full h-72 sm:h-96 overflow-hidden rounded-xl">
                             <!-- Car image will be inserted here -->
                         </div>
                     </div>
@@ -769,7 +769,7 @@
     <script>
         // Sample car data (in a real implementation, this would come from Cloudinary)
         const cars = [
-            {
+       {
     id: 1,
     name: "Ford Ecosport",
     brand: "Ford",
@@ -782,8 +782,11 @@
     sold: false,
     images: [
         "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346049/ecosport1_mfnhvo.jpg",
-        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346049/ecosport1_mfnhvo.jpg",
-        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346048/ecosport4_yack10.jpg"
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346049/ecosport2_xwubvm.jpg",
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346048/ecosport4_yack10.jpg",
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346048/ecosport3_d2kxbw.jpg",
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346048/ecosport5_wwzs3n.jpg",
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764346048/ecosport6_xlwmgn.jpg"
     ]
 },
             {
@@ -1189,6 +1192,59 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Erro capturado (lightbox):", ev.message);
   });
 });
+
+let carouselIndex = 0;
+
+function openCarModal(carId) {
+    currentCar = cars.find(car => car.id === carId);
+    if (!currentCar) return;
+
+    document.getElementById('modal-title').textContent = currentCar.name;
+
+    // Define a lista de imagens
+    const images = currentCar.images || [currentCar.image || currentCar.Image];
+    carouselIndex = 0;
+
+    // Monta o carrossel
+    renderCarousel(images);
+
+    // Abre o modal
+    document.getElementById('car-modal').classList.remove('hidden');
+}
+
+function renderCarousel(images) {
+    const container = document.getElementById('modal-image');
+    container.innerHTML = `
+        <img id="carousel-photo"
+             src="${images[carouselIndex]}"
+             class="w-full h-full object-cover rounded-xl">
+
+        <!-- Botão anterior -->
+        <button onclick="prevImage()"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+            ◀
+        </button>
+
+        <!-- Próximo -->
+        <button onclick="nextImage()"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+            ▶
+        </button>
+    `;
+}
+
+function nextImage() {
+    const images = currentCar.images || [currentCar.image || currentCar.Image];
+    carouselIndex = (carouselIndex + 1) % images.length;
+    document.getElementById("carousel-photo").src = images[carouselIndex];
+}
+
+function prevImage() {
+    const images = currentCar.images || [currentCar.image || currentCar.Image];
+    carouselIndex = (carouselIndex - 1 + images.length) % images.length;
+    document.getElementById("carousel-photo").src = images[carouselIndex];
+}
+
 
 </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978a23ea8611c134',t:'MTc1Njc4NjA0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
