@@ -379,13 +379,12 @@
     </section>
 
     <!-- Car Detail Modal -->
-  <div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4">
-  <div class="w-full max-w-4xl mx-auto">
+<div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4">  <div class="w-full max-w-4xl mx-auto">
     <h2 id="modal-title" class="text-xl font-bold text-white mb-4"></h2>
 
     <!-- Aqui vai o carrossel -->
-    <div id="modal-image" class="relative w-full max-w-3xl h-[420px] sm:h-[520px] mx-auto overflow-hidden rounded-xl"></div>
-
+<div id="modal-image" class="relative w-full max-w-3xl h-[420px] sm:h-[520px] mx-auto overflow-hidden rounded-xl flex items-center justify-center">
+</div>
     <!-- detalhes abaixo do carrossel -->
     <div id="modal-details" class="mt-4 text-gray-300 text-sm"></div>
   </div>
@@ -984,6 +983,49 @@ function renderCarousel(images) {
   // cleanup: quando fechar modal, remover listener
   // (mantemos uma referência no elemento para poder limpar depois)
   container._carouselCleanup = () => document.removeEventListener('keydown', onKey);
+}
+
+function openCarModal(carId) {
+    const car = cars.find(c => c.id === carId);
+    if (!car) return;
+
+    // título
+    document.getElementById("modal-title").textContent = car.name;
+
+    // renderiza imagens do carrossel
+    renderCarousel(car.images || [car.image]);
+
+    // detalhes
+    document.getElementById("modal-details").innerHTML = `
+        <p><strong>Ano:</strong> ${car.year}</p>
+        <p><strong>Quilometragem:</strong> ${car.mileage}</p>
+        <p><strong>Cor:</strong> ${car.color}</p>
+    `;
+
+    // exibe modal
+    const modal = document.getElementById("car-modal");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    // trava o fundo
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+    const container = document.getElementById('modal-image');
+
+    // limpa event listeners do carrossel
+    if (container && container._carouselCleanup) {
+        container._carouselCleanup();
+        delete container._carouselCleanup;
+    }
+
+    const modal = document.getElementById("car-modal");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+
+    // destrava o fundo
+    document.body.style.overflow = "auto";
 }
 
 
