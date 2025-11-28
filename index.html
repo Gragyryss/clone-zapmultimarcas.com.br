@@ -325,7 +325,6 @@
 </section>
 
 
-
             <!--STYLE PARA A LOCALIZAÇÃO NO GOOGLE MAPS-->
              <style>
 
@@ -346,22 +345,36 @@
 
   </style>
 
-  <button onclick="openWhatsApp()" class="bg-zap-green text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white transition-all duration-300 transform hover:scale-105">
-                Falar no WhatsApp
-            </button><br><br>
+ <!-- CONTAINER CENTRALIZADO -->
+<div class="max-w-4xl mx-auto text-center mt-10">
 
-  <!--SECTION PARA A LOCALIZAÇÃO NO GOOGLE MAPS-->
-            <section>
-                <p>Nossa Senhora Aparecida, Avenida Rotary, Nº 621, Sala 06</p>
-                <div class="map-container">
+    <!-- Botão WhatsApp -->
+    <button onclick="openWhatsApp()" 
+        class="bg-zap-green text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white transition-all duration-300 transform hover:scale-105">
+        Falar no WhatsApp
+    </button>
 
-                <iframe
-                src=https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d443.1986630795478!2d-50.57987682418357!3d-27.294739698482434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1756987305753!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    <br><br>
+
+    <!-- SECTION PARA A LOCALIZAÇÃO -->
+    <section class="mt-6">
+        <p class="text-lg mb-4">
+            Nossa Senhora Aparecida, Avenida Rotary, Nº 621, Sala 06
+        </p>
+
+        <div class="map-container flex justify-center">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d443.1986630795478!2d-50.57987682418357!3d-27.294739698482434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1756987305753!5m2!1spt-BR!2sbr"
+                class="w-full max-w-3xl h-[480px] rounded-xl"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+        </div>
+    </section>
+</div>
 
-        </div>
-            </section>
-        </div>
 
         <!--ADICIONA UM RODAPÉ PARA A PÁGINA-->
         <!--PRIMEIRO SEGUE O STYLE, E DEPOIS O FOOTER-->
@@ -393,8 +406,9 @@
 </footer>
     </section>
 
-   <!-- Modal -->
+   <!-- Modal principal -->
 <div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-6 z-[9999]">
+
     <div class="bg-gray-900/90 p-6 rounded-2xl max-w-4xl w-full shadow-xl relative">
 
         <!-- Botão fechar -->
@@ -411,39 +425,57 @@
             class="relative w-full h-[340px] sm:h-[420px] overflow-hidden rounded-xl flex items-center justify-center bg-black/40">
         </div>
 
-        <!-- Dados do carro -->
-        <div id="modal-details" class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-300">
-            <!-- Conteúdo é preenchido via JS -->
+        <!-- Botões -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-6">
+
+            <!-- Ver Preço -->
+            <button 
+                onclick="openPriceDialog()"
+                class="w-full bg-blue-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-blue-700 transition">
+                Ver Preço
+            </button>
+
+            <!-- WhatsApp -->
+            <button 
+                onclick="contactWhatsApp()"
+                class="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
+                Falar no WhatsApp
+            </button>
+
+        </div>
+
+        <!-- Informações do carro -->
+        <div id="modal-details"
+             class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-300">
         </div>
 
     </div>
 </div>
 
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                    
+<!-- Caixa de diálogo do preço -->
+<div id="priceDialog" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-[9999]">
+    <div class="bg-white text-gray-900 p-6 rounded-xl w-80">
+        <h2 class="text-xl font-bold mb-4">Consultar preço</h2>
 
-<!-- Painel de informações -->
-<div id="modal-details"
-     class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-[70%] 
-            bg-white/10 backdrop-blur-md border border-white/20 
-            rounded-xl p-5 text-gray-200 shadow-xl">
-</div>
-                    <div>
-                        <div class="mt-8 space-y-4">
-                            <button onclick="showPrice()" class="w-full bg-zap-green text-black py-3 rounded-xl font-semibold hover:bg-white transition-colors">
-                                Ver Preço
-                            </button>
-                            <button onclick="contactWhatsApp()" class="w-full bg-gray-800 text-white py-3 rounded-xl font-semibold hover:bg-gray-700 transition-colors">
-                                Falar no WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="mb-4">
+            Para saber o preço deste veículo, clique no botão abaixo para iniciar uma conversa no WhatsApp.
+        </p>
+
+        <div class="flex flex-col gap-3">
+            <button onclick="goToWhatsAppPrice()" 
+                class="bg-green-600 text-white w-full py-2 rounded-lg hover:bg-green-700">
+                Falar no WhatsApp
+            </button>
+
+            <button onclick="closePriceDialog()"
+                class="bg-gray-300 w-full py-2 rounded-lg hover:bg-gray-400">
+                Fechar
+            </button>
         </div>
     </div>
+</div>
+
 
     <div id="lightbox">
     <span id="lightbox-close">&times;</span>
@@ -610,8 +642,8 @@
                 mileage: "62.433 km",
                 sold: false,
                 images: [
-        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352775/fusca1_np4dll.jpg",
         "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352772/fusca2_tkc7wg.jpg",
+        "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352775/fusca1_np4dll.jpg",
         "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352770/fusca3_qbjyzw.jpg",
         "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352767/fusca4_ufsbuq.jpg",
         "https://res.cloudinary.com/dwrmw2cgc/image/upload/v1764352765/fusca5_yqnuzb.jpg",
@@ -621,7 +653,20 @@
         ];
 
        let currentCar = null;
-    let currentFilter = 'all';
+       let currentFilter = 'all';
+       let currentCarId = null;
+
+function openCarModal(carId) {
+    currentCarId = carId; // <- ESSENCIAL para personalizar a mensagem
+    const car = cars.find(c => c.id === carId);
+
+    currentImages = car.images;
+    currentIndex = 0;
+    updateCarousel();
+
+    document.getElementById("carModal").classList.remove("hidden");
+}
+
 
     document.addEventListener('DOMContentLoaded', () => {
         renderCars();
@@ -765,12 +810,17 @@ modalDetails.innerHTML = `
         alert(`Para conhecer o preço deste ${currentCar.name}, entre em contato conosco pelo WhatsApp!\n\nClique em "Falar no WhatsApp" abaixo.`);
     }
 
-    function contactWhatsApp() {
-        if (!currentCar) return;
-        const message = `Olá! Tenho interesse no ${currentCar.name} ${currentCar.year}. Gostaria de mais informações.`;
-        const whatsappUrl = `https://wa.me/5549998033223?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
-    }
+   function contactWhatsApp(carId) {
+    const car = cars.find(c => c.id === carId);
+    const message = encodeURIComponent(
+        `Olá! Tenho interesse no ${car.name}. Poderia me informar mais detalhes?`
+    );
+
+    const phone = "https://wa.me/5549998033223"; // <<-- coloque o número do WhatsApp AQUI
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+}
+
 
     function openWhatsApp() {
         const message = "Olá! Gostaria de conhecer os veículos disponíveis na ZAP Multimarcas.";
@@ -1146,6 +1196,31 @@ function renderCarDetails(car) {
 function closeCarModal() {
     document.getElementById("car-modal").classList.add("hidden");
 }
+
+let carIdForPrice = null;
+
+function openPriceDialog(carId) {
+    carIdForPrice = carId;
+    document.getElementById("priceDialog").classList.remove("hidden");
+}
+
+function closePriceDialog() {
+    document.getElementById("priceDialog").classList.add("hidden");
+}
+
+function goToWhatsAppPrice() {
+    const car = cars.find(c => c.id === carIdForPrice);
+    const message = encodeURIComponent(
+        `Olá! Gostaria de saber o preço do ${car.name}.`
+    );
+
+    const phone = "5547999999999"; // <<-- substitua pelo número real
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+    closePriceDialog();
+}
+
+
 
 
 </script>
