@@ -379,7 +379,7 @@
     </section>
 
     <!-- Car Detail Modal -->
-<div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4">  <div class="w-full max-w-4xl mx-auto">
+<div id="car-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4 relative">    
     <h2 id="modal-title" class="text-xl font-bold text-white mb-4"></h2>
 
     <!-- Aqui vai o carrossel -->
@@ -391,14 +391,17 @@
 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                       <div id="modal-image" class="relative w-full max-w-3xl h-[420px] sm:h-[500px] mx-auto overflow-hidden rounded-xl">
-                            <!-- Car image will be inserted here -->
-                        </div>
-                    </div>
+                       <div id="modal-image"
+     class="relative w-full max-w-3xl h-[420px] sm:h-[520px] mx-auto overflow-hidden rounded-xl flex items-center justify-center">
+</div>
+
+<!-- Painel de informações -->
+<div id="modal-details"
+     class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-[70%] 
+            bg-white/10 backdrop-blur-md border border-white/20 
+            rounded-xl p-5 text-gray-200 shadow-xl">
+</div>
                     <div>
-                       <div id="modal-details" class="mt-4 text-gray-300 text-sm"></div>
-                            <!-- Car details will be inserted here -->
-                        </div>
                         <div class="mt-8 space-y-4">
                             <button onclick="showPrice()" class="w-full bg-zap-green text-black py-3 rounded-xl font-semibold hover:bg-white transition-colors">
                                 Ver Preço
@@ -613,7 +616,12 @@
         });
 
         grid.innerHTML = filteredCars.map(car => {
-            const imgSrc = car.image || car.Image || '';
+const imgSrc = (
+    (car.images && car.images.length > 0 && car.images[0]) || 
+    car.image || 
+    car.Image || 
+    "https://via.placeholder.com/400x300?text=Sem+Imagem"
+);
             // badge apenas se sold === true
             const soldBadge = car.sold ? `
                 <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">
@@ -674,7 +682,12 @@
         document.getElementById('modal-title').textContent = currentCar.name;
 
         const modalImage = document.getElementById('modal-image');
-        const imgSrc = currentCar.image || currentCar.Image || '';
+const defaultImage = (
+    (car.images && car.images.length > 0 && car.images[0]) ||
+    car.image ||
+    car.Image ||
+    "https://via.placeholder.com/800x600?text=Sem+Imagem"
+);
         modalImage.innerHTML = `
     <div class="w-full max-w-[800px] h-[400px] mx-auto px-4 flex items-center justify-center">
         <div class="swiper mySwiper w-full h-full">
@@ -896,7 +909,7 @@ function openCarModal(carId) {
     carouselIndex = 0;
 
     // Monta o carrossel
-    renderCarousel(images);
+renderCarousel(car.images && car.images.length > 0 ? car.images : [defaultImage]);
 
     // Abre o modal
     document.getElementById('car-modal').classList.remove('hidden');
@@ -1024,11 +1037,17 @@ function openCarModal(carId) {
     renderCarousel(car.images || [car.image]);
 
     // detalhes
-    document.getElementById("modal-details").innerHTML = `
+   document.getElementById("modal-details").innerHTML = `
+    <h2 class="text-xl font-semibold mb-3">${car.name}</h2>
+
+    <div class="grid grid-cols-2 gap-3 text-sm">
         <p><strong>Ano:</strong> ${car.year}</p>
-        <p><strong>Quilometragem:</strong> ${car.mileage}</p>
+        <p><strong>KM:</strong> ${car.mileage}</p>
         <p><strong>Cor:</strong> ${car.color}</p>
-    `;
+        <p><strong>Combustível:</strong> ${car.fuel}</p>
+        <p><strong>Câmbio:</strong> ${car.transmission}</p>
+    </div>
+`;
 
     // exibe modal
     const modal = document.getElementById("car-modal");
