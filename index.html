@@ -1227,6 +1227,18 @@ function closePriceDialog() {
     document.getElementById("priceDialog").classList.add("hidden");
 }
 
+function contactWhatsApp(carId = currentCarId) {
+    const car = cars.find(c => c.id === carId);
+
+    const message = encodeURIComponent(
+        `Olá! Tenho interesse no ${car.name}. Poderia me informar mais detalhes?`
+    );
+
+    const phone = "5549998033223"; // APENAS O NÚMERO!
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+}
+
 function goToWhatsAppPrice() {
     contactWhatsApp(currentCarId); // usa o veículo atual
 }
