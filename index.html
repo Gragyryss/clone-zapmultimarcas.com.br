@@ -1219,8 +1219,7 @@ function closeCarModal() {
 
 let carIdForPrice = null;
 
-function openPriceDialog(carId) {
-    carIdForPrice = carId;
+function openPriceDialog() {
     document.getElementById("priceDialog").classList.remove("hidden");
 }
 
@@ -1229,16 +1228,9 @@ function closePriceDialog() {
 }
 
 function goToWhatsAppPrice() {
-    const car = cars.find(c => c.id === carIdForPrice);
-    const message = encodeURIComponent(
-        `Olá! Gostaria de saber o preço do ${car.name}.`
-    );
-
-    const phone = "5547999999999"; // <<-- substitua pelo número real
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-
-    closePriceDialog();
+    contactWhatsApp(currentCarId); // usa o veículo atual
 }
+
 
 
 
