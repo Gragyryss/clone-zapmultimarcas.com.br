@@ -416,7 +416,6 @@
             class="absolute top-3 right-3 text-white text-2xl bg-black/40 px-3 rounded-full hover:bg-black/60">
             ✕
         </button>
-
         <!-- Título -->
         <h2 id="modal-title" class="text-2xl font-semibold text-white mb-4 text-center"></h2>
 
@@ -436,8 +435,8 @@
             </button>
 
             <!-- WhatsApp -->
-            <button 
-                onclick="contactWhatsApp()"
+             <button 
+                onclick="contactWhatsApp(currentCarId)"
                 class="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
                 Falar no WhatsApp
             </button>
@@ -517,7 +516,7 @@
                 model: "Jetta",
                 year: 2021,
                 fuel: "Flex",
-                transmission: "Automática",
+                transmission: "Automático",
                 color: "Branco",
                 mileage: "58.584 km",
                 sold: false,
@@ -677,15 +676,17 @@
        let currentCarId = null;
 
 function openCarModal(carId) {
-    currentCarId = carId; // <- ESSENCIAL para personalizar a mensagem
-    const car = cars.find(c => c.id === carId);
+  currentCarId = carId;
+  const car = cars.find(c => c.id === carId);
+  // ... seu código para preencher modal ...
+  const phone = "5549998033223";
+  const message = `Olá! Tenho interesse no ${car.name}.`;
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-    currentImages = car.images;
-    currentIndex = 0;
-    updateCarousel();
-
-    document.getElementById("carModal").classList.remove("hidden");
+  const waBtn = document.getElementById('wa-button');
+  if (waBtn) waBtn.href = url;
 }
+
 
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -814,15 +815,9 @@ modalDetails.innerHTML = `
         document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-  const container = document.getElementById('modal-image');
-  if (container && container._carouselCleanup) {
-    try { container._carouselCleanup(); } catch(e) {}
-    delete container._carouselCleanup;
-  }
-  document.getElementById('car-modal').classList.add('hidden');
-  document.getElementById('car-modal').classList.remove('flex');
-  document.body.style.overflow = 'auto';
+    function closeCarModal() {
+    document.getElementById("carModal").style.display = "none";
+    document.body.style.overflow = ""; // volta scroll
 }
 
     function showPrice() {
@@ -1214,8 +1209,14 @@ function renderCarDetails(car) {
 }
 
 function closeCarModal() {
-    document.getElementById("car-modal").classList.add("hidden");
+    const modal = document.getElementById('carModal');
+
+    modal.classList.add('hidden'); // ou o que você usa para esconder
+
+    // LIBERA O SCROLL
+    document.body.style.overflow = '';
 }
+
 
 let carIdForPrice = null;
 
@@ -1227,24 +1228,25 @@ function closePriceDialog() {
     document.getElementById("priceDialog").classList.add("hidden");
 }
 
-function contactWhatsApp(carId = currentCarId) {
-    const car = cars.find(c => c.id === carId);
+function contactWhatsApp_simple(carId = currentCarId) {
+  if (!carId) return console.error("carId indefinido");
+  const car = cars.find(c => c.id === carId);
+  if (!car) return console.error("carro não encontrado");
 
-    const message = encodeURIComponent(
-        `Olá! Tenho interesse no ${car.name}. Poderia me informar mais detalhes?`
-    );
+  const phone = "5549998033223"; // só dígitos
+  const message = `Olá! Tenho interesse no ${car.name}.`;
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-    const phone = "5549998033223"; // APENAS O NÚMERO!
-
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+  console.log("Tentando abrir (simple):", url);
+  window.open(url, "_blank");
 }
+
+
+
 
 function goToWhatsAppPrice() {
     contactWhatsApp(currentCarId); // usa o veículo atual
 }
-
-
-
 
 
 </script>
