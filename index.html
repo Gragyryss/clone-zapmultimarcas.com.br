@@ -427,10 +427,9 @@
 
         <!-- Botões -->
            <div class="flex flex-col gap-4 mt-6">
-                <a id="wa-car-button"
-                    href="#"
+                <a href="https://wa.me/5549998033223?text=Olá! Estou explorando o site e tenho interesse em um veículo poderia me ajudar?"
                     class="w-full inline-block text-center bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition"
-                    target="_blank" rel="noopener noreferrer">
+                    target="_blank">
                     Falar no WhatsApp
                 </a>
             </div>
@@ -454,47 +453,6 @@
     <img id="lightbox-img" src="">
 </div>
 
-<script>
-
-    function updateWhatsAppButton(car) {
-    const phone = "5549998033223";
-    const waBtn = document.getElementById("wa-car-button");
-
-    if (!waBtn) return; // segurança
-
-    const message = `Olá! Tenho interesse no ${car.name}.`;
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-    waBtn.setAttribute("href", url);
-}
-
-</script>
-
-<script> function openCarModal(carId) {
-    currentCarId = carId;
-    const car = cars.find(c => c.id === carId);
-
-    // Mensagem dinamicamente gerada
-    const phone = "5549998033223";
-    const message = `Olá! Tenho interesse no ${car.name}.`;
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-    // Seleciona o botão de WhatsApp de forma clara
-    const waBtn = document.getElementById("wa-car-button");
-
-    if (waBtn) {
-        waBtn.href = url;
-        console.log("WhatsApp atualizado:", url);
-    } else {
-        console.warn("Botão de WhatsApp não encontrado dentro do modal.");
-    }
-
-    // Abre o modal
-    const modal = document.getElementById('car-modal');
-    modal.classList.remove('hidden');
-    document.body.style.overflow = "hidden";
-}
-</script>
 
 <!-- =================================  -->
 <!--SCRIP PARA FECHAR A TELA DE DETALHES-->
@@ -1042,32 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let carouselIndex = 0;
 
-function openCarModal(carId) {
-    currentCar = cars.find(car => car.id === carId);
-    if (!currentCar) return;
 
-    document.getElementById('modal-title').textContent = currentCar.name;
-
-    // Seleciona a imagem padrão corretamente
-    const defaultImage =
-        (currentCar.images && currentCar.images.length > 0 && currentCar.images[0]) ||
-        currentCar.image ||
-        currentCar.Image ||
-        "https://via.placeholder.com/800x600?text=Sem+Imagem";
-
-    // Define imagens do carrossel
-    const images = (currentCar.images && currentCar.images.length > 0)
-        ? currentCar.images
-        : [defaultImage];
-
-    carouselIndex = 0;
-
-    // Monta o carrossel
-    renderCarousel(images);
-
-    // Abre o modal
-    document.getElementById('car-modal').classList.remove('hidden');
-}
 
 
 function renderCarousel(images) {
