@@ -425,53 +425,21 @@
         </div>
 
         <!-- Botões -->
-        <div class="flex flex-col sm:flex-row gap-4 mt-6">
+           <div class="flex flex-col gap-4 mt-6">
+                <a id="wa-button"
+                     href="#"
+                    class="w-full inline-block text-center bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition"
+                    target="_blank" rel="noopener noreferrer">
+                    Falar no WhatsApp
+</a>
 
-            <!-- Ver Preço -->
-            <button 
-                onclick="openPriceDialog()"
-                class="w-full bg-blue-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-blue-700 transition">
-                Ver Preço
-            </button>
-
-            <!-- WhatsApp -->
-             <button 
-                onclick="contactWhatsApp(currentCarId)"
-                class="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition">
-                Falar no WhatsApp
-            </button>
-
-        </div>
+            </div>
 
         <!-- Informações do carro -->
         <div id="modal-details"
              class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 text-gray-300">
         </div>
 
-    </div>
-</div>
-
-
-<!-- Caixa de diálogo do preço -->
-<div id="priceDialog" class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-[9999]">
-    <div class="bg-white text-gray-900 p-6 rounded-xl w-80">
-        <h2 class="text-xl font-bold mb-4">Consultar preço</h2>
-
-        <p class="mb-4">
-            Para saber o preço deste veículo, clique no botão abaixo para iniciar uma conversa no WhatsApp.
-        </p>
-
-        <div class="flex flex-col gap-3">
-            <button onclick="goToWhatsAppPrice()" 
-                class="bg-green-600 text-white w-full py-2 rounded-lg hover:bg-green-700">
-                Falar no WhatsApp
-            </button>
-
-            <button onclick="closePriceDialog()"
-                class="bg-gray-300 w-full py-2 rounded-lg hover:bg-gray-400">
-                Fechar
-            </button>
-        </div>
     </div>
 </div>
 
@@ -716,16 +684,29 @@
        let currentCarId = null;
 
 function openCarModal(carId) {
-  currentCarId = carId;
-  const car = cars.find(c => c.id === carId);
-  // ... seu código para preencher modal ...
-  const phone = "5549998033223";
-  const message = `Olá! Tenho interesse no ${car.name}.`;
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    currentCarId = carId;
+    const car = cars.find(c => c.id === carId);
 
-  const waBtn = document.getElementById('wa-button');
-  if (waBtn) waBtn.href = url;
+    // Mensagem personalizada
+    const phone = "5549998033223";
+    const message = `Olá! Tenho interesse no ${car.name}.`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    // Seleciona o botão dentro do modal (funciona mesmo se o modal for recriado)
+    const waBtn = document.querySelector('#car-modal a[href*="wa.me"], #car-modal #wa-button, #car-modal a');
+
+    if (waBtn) {
+        waBtn.href = url;
+        console.log("WhatsApp atualizado:", url);
+    } else {
+        console.warn("Botão de WhatsApp não encontrado dentro do modal.");
+    }
+
+    // Exibe o modal
+    document.getElementById('car-modal').classList.remove('hidden');
+    document.body.style.overflow = "hidden";
 }
+
 
 
 
@@ -1260,33 +1241,6 @@ function closeCarModal() {
 
 let carIdForPrice = null;
 
-function openPriceDialog() {
-    document.getElementById("priceDialog").classList.remove("hidden");
-}
-
-function closePriceDialog() {
-    document.getElementById("priceDialog").classList.add("hidden");
-}
-
-function contactWhatsApp_simple(carId = currentCarId) {
-  if (!carId) return console.error("carId indefinido");
-  const car = cars.find(c => c.id === carId);
-  if (!car) return console.error("carro não encontrado");
-
-  const phone = "5549998033223"; // só dígitos
-  const message = `Olá! Tenho interesse no ${car.name}.`;
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  console.log("Tentando abrir (simple):", url);
-  window.open(url, "_blank");
-}
-
-
-
-
-function goToWhatsAppPrice() {
-    contactWhatsApp(currentCarId); // usa o veículo atual
-}
 
 
 </script>
